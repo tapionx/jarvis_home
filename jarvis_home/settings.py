@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import environ
-root = environ.Path(__file__) - 1
+root = environ.Path(__file__) - 2
 env = environ.Env(DEBUG=(bool, False),)
 environ.Env.read_env()
 
