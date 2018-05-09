@@ -117,6 +117,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'STATIC')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
 MEDIA_URL = '/files/'
 
+LOGIN_URL = '/login'
+
 EMAIL_SUBJECT_PREFIX = '[JARVIS] '
 
 ADMINS = [
@@ -165,3 +167,4 @@ LOGGING = {
     },
 }
 
+RELAY_CONTROLLER_IP = env('RELAY_CONTROLLER_IP')

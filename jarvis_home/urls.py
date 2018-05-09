@@ -21,5 +21,9 @@ from web import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('login', views.login),
+    path('login', views.login_view),
+    path('logout', views.logout_view),
+    
+    path('api/ping-controller', views.api_ping_controller),
+    path('api/action/<str:relay>', views.api_action),
 ]
