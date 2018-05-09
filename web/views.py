@@ -48,4 +48,5 @@ def api_action(request, relay):
         requests.post('http://{}/{}'.format(settings.RELAY_CONTROLLER_IP, relay))
         return HttpResponse(json.dumps(dict(success=True)), content_type="application/json")
     except Exception as e:
-        return HttpResponse(json.dumps(dict(success=False, reason=str(e))), content_type="application/json")
+        return HttpResponse(json.dumps(dict(success=False, reason=str(e))), 
+            status_code=500, content_type="application/json")

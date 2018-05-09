@@ -3,8 +3,37 @@
 <style>
     button {
         display: block;
-        margin: 5px;
+        margin: 23px auto;
+        height: 70px;
+        width: 270px;
+        font-size: 45px;
+        border: 0px;
+        background-color: #c1ccfd;
+        border-radius: 7px;
     }
+    button.ready {
+        background-color: #7286ff;
+    }
+    button:focus {
+        outline: 0px;
+    }
+    @keyframes triggered {
+        from {background-color: green;}
+        to {background-color: #c1ccfd;}
+    }
+    button.triggered {
+        animation-name: triggered;
+        animation-duration: 1s;
+    }
+    @keyframes failed {
+        from {background-color: red;}
+        to {background-color: #c1ccfd;}
+    }
+    button.failed {
+        animation-name: failed;
+        animation-duration: 1s;
+    }
+
 </style>
 {% endblock %}
 {% block "content" %}
@@ -30,8 +59,22 @@
         }
     });
     $('button').click(function(){
-        var id = this.id;
-        $.post('/api/action/'+id);
+        var ready = $(this).hasClass('ready');
+        if(ready) {
+            var that = this;
+            var id = this.id;
+            $.post('/api/action/'+id, function(){
+                $(that).removeClass('ready');
+                $(that).addClass('triggered');
+            }).fail(function(){
+                $(that).removeClass('ready');
+                $(that).addClass('failed');
+            });
+        } else {
+            $(this).addClass('ready');
+            $(this).removeClass('triggered');
+            $(this).removeClass('failed');
+        }
     });
 </script>
 {% endblock %}
