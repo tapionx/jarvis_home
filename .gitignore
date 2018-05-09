@@ -1,0 +1,7 @@
+*.pyc
+*.db
+*.sqlite3
+web/migrations/0*
+*.swp
+*__pycache__*
+jarvis_home/.env
